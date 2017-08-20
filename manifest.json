@@ -1,0 +1,21 @@
+{
+
+  "manifest_version": 2,
+  "name": "WhatToDo",
+  "version": "1.0",
+
+  "description": "An addon store events",
+  "homepage_url": "https://github.com/mdn/webextensions-examples/tree/master/beastify",
+  "icons": {
+    "32": "icons/todo.png"
+  },
+
+  "browser_action": {
+    "default_icon": "icons/todo.png",
+    "default_title": "WhatToDo",
+    "default_popup": "popup/todo.html"
+  },
+
+  "permissions": ["storage"]
+  
+}
