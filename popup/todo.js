@@ -22,8 +22,18 @@ $(document).ready(function() {
 		    "title": noteHead,
 		    "body": noteBody
 	    }
-    
-	    notes.unshift(note);
+
+	    var selectedNote = notes.filter(function(item) {
+	    	return item.title === note.title;
+	    });
+
+
+	    if (selectedNote.length === 0) {
+	    	notes.unshift(note);
+	    } else {
+	    	selectedNote = selectedNote[0];
+	    	selectedNote.body = note.body;
+	    }
     
 	    //storage = {}
 	    //storage["todo"] = notes;
@@ -71,9 +81,14 @@ $(document).ready(function() {
 		    noteHtml = "<div class='card'>" +
 		                   "<div class='card-header'>" +
 		                       "<span><strong>" + elem.title + "</strong></span>" +
-		                       "<span class='remove'>" +
-		                           "<img src='remove.svg'>" +
 		                       "<span>" +
+		                           "<span class='edit'>" +
+		                               "<img src='edit.svg'>" +
+		                           "</span>" +
+		                           "<span class='remove'>" +
+		                               "<img src='remove.svg'>" +
+		                           "</span>" +
+		                       "</span>" +
 		                   "</div>" +
 		                   "<div class='card-body'>" + elem.body + "</div>" +
 		               "</div>";
@@ -83,7 +98,7 @@ $(document).ready(function() {
 	    $(".notes").html(notesHtml);
 
 	    $(".remove").click(function() {
-	    	var key = $(this).prev().text();
+	    	var key = $(this).parent().prev().text();
 	    	notes = notes.filter(function(item) {
 	    		return item["title"] !== key;
 	    	});
@@ -94,6 +109,13 @@ $(document).ready(function() {
 
 	        localStorage.todo = JSON.stringify(notes);
 	        getNotes();
+	    });
+
+	    $(".edit").click(function() {
+	    	$(".note-head").val($(this).parent().prev().text());
+	    	$(".note-body").val($(this).parent().parent().next().text());
+
+	    	$(".add-note").slideDown();
 	    });
     }
 

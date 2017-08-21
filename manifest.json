@@ -5,7 +5,7 @@
   "version": "1.0",
 
   "description": "An addon store events",
-  "homepage_url": "https://github.com/mdn/webextensions-examples/tree/master/beastify",
+  "homepage_url": "https://github.com/djmgit/todo-webext",
   "icons": {
     "32": "icons/todo.png"
   },
@@ -16,6 +16,10 @@
     "default_popup": "popup/todo.html"
   },
 
-  "permissions": ["storage"]
+  "background": {
+    "scripts": ["background.js"]
+  },
+
+  "permissions": ["storage", "contextMenus", "activeTab"]
   
 }

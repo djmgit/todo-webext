@@ -112,6 +112,10 @@
 	cursor: pointer;
 }
 
+.edit {
+	cursor: pointer;
+}
+
 .empty {
 	font-size: 30px;
 	color: #757575;
